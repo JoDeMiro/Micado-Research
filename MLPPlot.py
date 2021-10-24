@@ -105,15 +105,16 @@ class Layer():
         z=0 # counter for names
         for neuron in self.neurons:            
             i=0 # index for neurons in previous layer
+            if self.previous_layer:
+                for previous_layer_neuron in self.previous_layer.neurons:
+                    self.__line_between_two_neurons(neuron, previous_layer_neuron, weights[i,j], textoverlaphandler)
+                    i=i+1
             if(layerType==0):
               name = self.input_names[z]
               neuron.draw( self.neuron_radius, id=j+1, name=name)
             else:
               neuron.draw( self.neuron_radius, id=j+1)
-            if self.previous_layer:
-                for previous_layer_neuron in self.previous_layer.neurons:
-                    self.__line_between_two_neurons(neuron, previous_layer_neuron, weights[i,j], textoverlaphandler)
-                    i=i+1
+            
             j=j+1
             z=z+1
         
