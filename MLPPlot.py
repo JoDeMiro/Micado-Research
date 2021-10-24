@@ -20,7 +20,8 @@ class Neuron():
         self.y = y
 
     def draw(self, neuron_radius, id=-1, name=None):
-        circle = pyplot.Circle((self.x, self.y), radius=neuron_radius, fill=False)
+        # circle = pyplot.Circle((self.x, self.y), radius=neuron_radius, fill=False)
+        circle = pyplot.Circle((self.x, self.y), radius=neuron_radius, fill=True, facecolor='white', edgecolor='black', lw=1, zorder=2.1)
         pyplot.gca().add_patch(circle)
         pyplot.gca().text(self.x, self.y-0.15, str(id), size=10, ha='center')
         if name is not None:
