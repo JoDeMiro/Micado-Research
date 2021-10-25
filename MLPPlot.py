@@ -1,11 +1,9 @@
 
 import os
 
-os.system('pip install plotly')
-os.system('pip install chart-studio')
-os.system('pip install pyit2fls')
-
-
+# os.system('pip install plotly')
+# os.system('pip install chart-studio')
+# os.system('pip install pyit2fls')
 
 
 from matplotlib import pyplot
