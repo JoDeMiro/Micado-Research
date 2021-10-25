@@ -152,7 +152,8 @@ class TextOverlappingHandler():
             return False
 
 class NeuralNetwork():
-    def __init__(self, number_of_neurons_in_widest_layer, input_names=None):
+    def __init__(self, number_of_neurons_in_widest_layer, input_names=None, flag = 1):
+        self.flag = flag
         self.number_of_neurons_in_widest_layer = number_of_neurons_in_widest_layer
         self.layers = []
         self.layertype = 0
@@ -192,9 +193,14 @@ class NeuralNetwork():
         pyplot.axis('scaled')
         pyplot.axis('off')
         pyplot.title( 'Neural Network architecture', fontsize=15 )
-        figureName='ANN_'+strftime("%Y%m%d_%H%M%S", localtime())+'.png'
-        pyplot.savefig(figureName, dpi=300, bbox_inches="tight")
-        pyplot.show()
+        figureName = 'ANN_'+strftime("%Y%m%d_%H%M%S", localtime())+'.png'
+        if( self.flag == 2 or self.flag == 3):
+          pyplot.savefig(figureName, dpi=300, bbox_inches="tight")
+        if( self.flag == 1 or self.flag == 3):
+          pyplot.show()
+        pyplot.cla()
+        pyplot.clf()
+        pyplot.close('all')
 
 class DrawNN():
     # para: neural_network is an array of the number of neurons 
@@ -218,9 +224,10 @@ class DrawNN():
                 weights_list.append(tempArr)
             self.weights_list = weights_list
         
-    def draw( self ):
-        widest_layer = max( self.neural_network )
-        network = NeuralNetwork( widest_layer, self.input_names)
+    def draw( self, flag = 1):
+      if( flag != 0 ):
+        widest_layer = max(self.neural_network)
+        network = NeuralNetwork(widest_layer, self.input_names, flag)
         for l in self.neural_network:
             network.add_layer(l)
         network.draw(self.weights_list)
