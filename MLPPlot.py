@@ -195,7 +195,8 @@ class NeuralNetwork():
         pyplot.title( 'Neural Network architecture', fontsize=15 )
         figureName = 'ANN_'+strftime("%Y%m%d_%H%M%S", localtime())+'.png'
         if( self.flag == 2 or self.flag == 3):
-          pyplot.savefig(figureName, dpi=300, bbox_inches="tight")
+          # pyplot.savefig(figureName, dpi=300, bbox_inches="tight")
+          pyplot.savefig(figureName, bbox_inches="tight")
         if( self.flag == 1 or self.flag == 3):
           pyplot.show()
         pyplot.cla()
