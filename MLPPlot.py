@@ -80,7 +80,7 @@ class Layer():
         # override this whole if esle statement
         # it's better for animation
         # v.1.1
-        linewidth = 5*(abs_weight**1.1)
+        linewidth = 5*abs_weight
         if linewidth > 15:
             linewidth = 15
 
