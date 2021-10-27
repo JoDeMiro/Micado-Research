@@ -80,7 +80,7 @@ class Layer():
         # override this whole if esle statement
         # it's better for animation
         # v.1.1
-        linewidth = 7*(abs_weight**1.2)
+        linewidth = 5*(abs_weight**1.2)
 
         # draw the weights and adjust the labels of weights to avoid overlapping
         if abs_weight > 0.5: 
