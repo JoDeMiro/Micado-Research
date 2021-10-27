@@ -77,6 +77,10 @@ class Layer():
             linewidth =  50*abs_weight
         else:
             linewidth = abs_weight
+        # override this whole if esle statement
+        # it's better for animation
+        # v.1.1
+        linewidth = 10*abs_weight
 
         # draw the weights and adjust the labels of weights to avoid overlapping
         if abs_weight > 0.5: 
