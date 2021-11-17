@@ -199,9 +199,9 @@ class NeuralNetwork():
         pyplot.axis('scaled')
         pyplot.axis('off')
         if(nth != None):
-            pyplot.title( 'Neural Network architecture ' + str(nth), fontsize=15 )
+            pyplot.title( 'Neural Network architecture B' + str(nth), fontsize=15 )
         else:
-            pyplot.title( 'Neural Network architecture', fontsize=15 )
+            pyplot.title( 'Neural Network architecture A', fontsize=15 )
         figureName = 'ANN_'+strftime("%Y%m%d_%H%M%S", localtime())+'.png'
         if( self.flag == 2 or self.flag == 3):
           # pyplot.savefig(figureName, dpi=300, bbox_inches="tight")
@@ -240,7 +240,7 @@ class DrawNN():
         network = NeuralNetwork(widest_layer, self.input_names, flag)
         for l in self.neural_network:
             network.add_layer(l)
-        network.draw(self.weights_list, nth)
+        network.draw(self.weights_list, nth=nth)
 
 
 
