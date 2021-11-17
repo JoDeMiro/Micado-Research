@@ -173,7 +173,7 @@ class NeuralNetwork():
         layer = Layer(self, number_of_neurons, self.number_of_neurons_in_widest_layer, self.input_names)
         self.layers.append(layer)
 
-    def draw(self, weights_list=None, input_names=None):
+    def draw(self, weights_list=None, input_names=None, nth=None):
         # vertical_distance_between_layers and horizontal_distance_between_neurons are the same with the variables of the same name in layer class
         vertical_distance_between_layers = 6
         horizontal_distance_between_neurons = 2
@@ -198,7 +198,10 @@ class NeuralNetwork():
 
         pyplot.axis('scaled')
         pyplot.axis('off')
-        pyplot.title( 'Neural Network architecture', fontsize=15 )
+        if(nth != None):
+            pyplot.title( 'Neural Network architecture ' + str(nth), fontsize=15 )
+        else:
+            pyplot.title( 'Neural Network architecture', fontsize=15 )
         figureName = 'ANN_'+strftime("%Y%m%d_%H%M%S", localtime())+'.png'
         if( self.flag == 2 or self.flag == 3):
           # pyplot.savefig(figureName, dpi=300, bbox_inches="tight")
