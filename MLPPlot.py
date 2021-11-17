@@ -234,13 +234,13 @@ class DrawNN():
                 weights_list.append(tempArr)
             self.weights_list = weights_list
         
-    def draw( self, flag = 1):
+    def draw( self, flag = 1, nth=None):
       if( flag != 0 ):
         widest_layer = max(self.neural_network)
         network = NeuralNetwork(widest_layer, self.input_names, flag)
         for l in self.neural_network:
             network.add_layer(l)
-        network.draw(self.weights_list)
+        network.draw(self.weights_list, nth)
 
 
 
