@@ -18,7 +18,6 @@ class Neuron():
         self.y = y
 
     def draw(self, neuron_radius, id=-1, name=None):
-        # circle = pyplot.Circle((self.x, self.y), radius=neuron_radius, fill=False)
         circle = pyplot.Circle((self.x, self.y), radius=neuron_radius, fill=True, facecolor='white', edgecolor='black', lw=1, zorder=2.1)
         pyplot.gca().add_patch(circle)
         pyplot.gca().text(self.x, self.y-0.15, str(id), size=10, ha='center')
@@ -26,10 +25,11 @@ class Neuron():
           pyplot.gca().text(self.x+0.05, self.y-0.5, str(name), size=20, ha='center', va='top', rotation='vertical')
 
 class Layer():
-    def __init__(self, network, number_of_neurons, number_of_neurons_in_widest_layer, input_names=None):
+    def __init__(self, network, number_of_neurons, number_of_neurons_in_widest_layer, input_names=None, line_width=1):
         self.vertical_distance_between_layers = 6
         self.horizontal_distance_between_neurons = 2
         self.neuron_radius = 0.5
+        self.line_width = line_width
         self.number_of_neurons_in_widest_layer = number_of_neurons_in_widest_layer
         self.previous_layer = self.__get_previous_layer(network)
         self.y = self.__calculate_layer_y_position()
@@ -81,6 +81,8 @@ class Layer():
         # it's better for animation
         # v.1.1
         linewidth = 5*abs_weight
+        linewidth = 1*abs_weight
+        linewidth = self.line_width*abs_weight
         if linewidth > 15:
             linewidth = 15
 
@@ -169,8 +171,8 @@ class NeuralNetwork():
         else:
             self.input_names = input_names
 
-    def add_layer(self, number_of_neurons ):
-        layer = Layer(self, number_of_neurons, self.number_of_neurons_in_widest_layer, self.input_names)
+    def add_layer(self, number_of_neurons, line_width=1):
+        layer = Layer(self, number_of_neurons, self.number_of_neurons_in_widest_layer, self.input_names, line_width=line_width)
         self.layers.append(layer)
 
     def draw(self, weights_list=None, input_names=None, nth=None):
@@ -234,14 +236,10 @@ class DrawNN():
                 weights_list.append(tempArr)
             self.weights_list = weights_list
         
-    def draw( self, flag = 1, nth=None):
+    def draw( self, flag=1, nth=None, line_width=1):
       if( flag != 0 ):
         widest_layer = max(self.neural_network)
         network = NeuralNetwork(widest_layer, self.input_names, flag)
         for l in self.neural_network:
-            network.add_layer(l)
+            network.add_layer(l, line_width)
         network.draw(self.weights_list, nth=nth)
-
-
-
-
